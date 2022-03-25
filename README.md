@@ -56,7 +56,7 @@ simply create conda environment with all packages just from yaml file:
 
 Lastly, build the ORViT codebase by running:
 ```
-git clone **TODO: this repo**
+git clone https://github.com/eladb3/ORViT.git
 cd ORViT
 python setup.py build develop
 ```
