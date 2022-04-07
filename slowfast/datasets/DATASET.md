@@ -159,3 +159,4 @@ Please put all annotation json files and the frame lists in the same folder, and
 
 ## EpicKitchen 100
 Follow instructions from [dataset provider](https://github.com/epic-kitchens/epic-kitchens-100-annotations).
+An h5 file containing the the processed bounding boxes will be generated once the dataloader is first generated. Alternativly you can download the processesd boxes file from [here](https://drive.google.com/file/d/1cv9aFOXRIkx7CIMcKNyEoDaw8sXPn8TT/view?usp=sharing) and place it in `data_cache/linked_boxes/epickitchens.h5`.

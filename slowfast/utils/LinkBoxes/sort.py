@@ -1,4 +1,5 @@
 """
+    Source: https://github.com/abewley/sort
     SORT: A Simple, Online and Realtime Tracker
     Copyright (C) 2016-2020 Alex Bewley alex@bewley.ai
 
@@ -15,18 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from __future__ import print_function
+# from builtins import Exception
+# from logging import raiseExceptions
+# from __future__ import print_function
+import slowfast.utils.logging as logging
+
+logger = logging.get_logger(__name__)
 
 import os
 import numpy as np
-import matplotlib
-# matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-try:
-  from skimage import io
-except Exception as e:
-  pass
 
 import glob
 import time
@@ -34,31 +32,6 @@ import argparse
 from filterpy.kalman import KalmanFilter
 
 np.random.seed(0)
-
-##
-
-def clear_dups(boxes, iou_threshold=0.7):
-  """
-  boxes: [N, 5]
-  """
-  matiou = iou_batch(boxes, boxes)
-  boxes = boxes.tolist()
-  i = 0
-  for i in range(len(boxes)):
-    remove_indices = []
-    for j in range(len(boxes)):
-      if boxes[j] is None: continue
-      if matiou[i, j] > iou_threshold:
-        remove_indices.append(j)
-    # pop max
-    if len(remove_indices) > 0:
-      max_score_idx = max(remove_indices, key = lambda x: boxes[x][-1])
-      remove_indices.remove(max_score_idx)
-      for ri in remove_indices:
-        boxes[ri] = None
-  return np.array([b for b in boxes if b is not None])
-
-##
 
 def linear_assignment(cost_matrix):
   try:
@@ -101,6 +74,8 @@ def convert_bbox_to_z(bbox):
   x = bbox[0] + w/2.
   y = bbox[1] + h/2.
   s = w * h    #scale is just area
+  assert np.all(h > 0)
+  assert np.all(w > 0)
   r = w / float(h)
   return np.array([x, y, s, r]).reshape((4, 1))
 
@@ -226,7 +201,7 @@ def associate_detections_to_trackers(detections,trackers,iou_threshold = 0.3):
 
 
 class Sort(object):
-  def __init__(self, max_age=1, min_hits=3, iou_threshold=0.3, clear_dups_threshold = 0.7):
+  def __init__(self, max_age=1, min_hits=3, iou_threshold=0.3, clear_dups_threshold = 0.7, trackers_count_start=0):
     """
     Sets key parameters for SORT
     """
@@ -236,7 +211,7 @@ class Sort(object):
     self.clear_dups_threshold = clear_dups_threshold
     self.trackers = []
     self.frame_count = 0
-    self.trackers_count = 0
+    self.trackers_count = trackers_count_start
   def update(self, dets=None):
     """
     Params:
@@ -248,8 +223,7 @@ class Sort(object):
     """
     if dets is None: dets = np.empty((0, 5))
     self.frame_count += 1
-    if self.clear_dups_threshold > 0 and len(dets) > 0:
-      dets = clear_dups(dets, iou_threshold=self.clear_dups_threshold)
+    
     # get predicted locations from existing trackers.
     trks = np.zeros((len(self.trackers), 5))
     to_del = []

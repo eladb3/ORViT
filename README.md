@@ -75,10 +75,8 @@ Training the default ORViT that uses Motionformer as backbone, and operates on 1
 
 ```
 python tools/run_net.py \
-  --cfg configs/K400/motionformer_224_16x4.yaml \
-  DATA.PATH_TO_DATA_DIR path_to_your_dataset \
-  NUM_GPUS 8 \
-  TRAIN.BATCH_SIZE 8 \
+  --cfg configs/ORViT/Smthelse_ORViT-MF_224_16x4.yaml \
+  DATA.PATH_TO_DATA_DIR path_to_your_dataset 
 ```
 You may need to pass location of your dataset in the command line by adding `DATA.PATH_TO_DATA_DIR path_to_your_dataset`, or you can simply modify
 
@@ -95,10 +93,10 @@ To the yaml configs file, then you do not need to pass it to the command line ev
 Use `TRAIN.ENABLE` and `TEST.ENABLE` to control whether training or testing is required for a given run. When testing, you also have to provide the path to the checkpoint model via TEST.CHECKPOINT_FILE_PATH.
 ```
 python tools/run_net.py \
-  --cfg configs/K400/motionformer_224_16x4.yaml \
+  --cfg configs/ORViT/Smthelse_ORViT-MF_224_16x4.yaml \
   DATA.PATH_TO_DATA_DIR path_to_your_dataset \
   TEST.CHECKPOINT_FILE_PATH path_to_your_checkpoint \
-  TRAIN.ENABLE False \
+  TRAIN.ENABLE False 
 ```
 
 

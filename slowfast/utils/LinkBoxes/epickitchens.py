@@ -122,7 +122,7 @@ def get_vid_boxes_linked(vid, dboxes, clear_dups_threshold, dboxes_sorted):
     return dvid_sorted
 
 def get_out_path(pbboxes):
-    path = pbboxes.replace('/', '__')
+    path = "epickitchens"
     os.makedirs(BASE_DIR, exist_ok=True, mode=0o777)
     path = os.path.join(BASE_DIR, path)
     return path
