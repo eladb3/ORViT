@@ -92,10 +92,10 @@ def perform_test(test_loader, model, test_meter, cfg, writer=None):
                     noun_preds, noun_labels, video_idx = du.all_gather(
                         [extra_preds['noun'], labels['noun'], video_idx]
                     )
-                    meta = du.all_gather_unaligned(meta)
+                    nid = du.all_gather_unaligned(meta['narration_id'])
                     metadata = {'narration_id': []}
-                    for i in range(len(meta)):
-                        metadata['narration_id'].extend(meta[i]['narration_id'])
+                    for i in range(len(nid)):
+                        metadata['narration_id'].extend(nid[i])
                 else:
                     metadata = meta
                     verb_preds, verb_labels, video_idx = extra_preds['verb'], labels['verb'], video_idx
