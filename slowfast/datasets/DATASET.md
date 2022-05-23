@@ -153,9 +153,11 @@ You could also replace the `v2.1` by `v2.2` if you need the AVA v2.2 annotation.
 `ffmpeg -i "${video}" -r 30 -q:v 1 "${out_name}"`
    in experiments.) Please put the frames in a structure consistent with the frame lists.
 
-
 Please put all annotation json files and the frame lists in the same folder, and set `DATA.PATH_TO_DATA_DIR` to the path. Set `DATA.PATH_PREFIX` to be the path to the folder containing extracted frames.
 
+The detected boxes are available [here](https://drive.google.com/file/d/1wAfrQ2GnddlvcKKre0NznxBGaFsy-hH4/view?usp=sharing). To use them, simply extract this file to `SSV2.DATA_ROOT`.
+
+To use the compositional split (Something-Else dataset), download [the dataset splits lists](https://drive.google.com/file/d/1nyaMU9lEQd2RP4eGHp_VD3jyCBoZ1PGN/view?usp=sharing), and extract to `SSV2.SPLITS_ROOT`. Alternatively, you can download these files from [https://github.com/joaanna/something_else](https://github.com/joaanna/something_else).
 
 ## EpicKitchen 100
 Follow instructions from [dataset provider](https://github.com/epic-kitchens/epic-kitchens-100-annotations).

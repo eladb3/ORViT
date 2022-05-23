@@ -67,8 +67,6 @@ python setup.py build develop
 
 Please use the dataset preparation instructions provided in [DATASET.md](slowfast/datasets/DATASET.md).
 
-Boxes for SSv2 and splits for Something-Else datasets can be downloaded from https://github.com/joaanna/something_else.
-
 ## Training the ORViT~MF
 
 Training the default ORViT that uses Motionformer as backbone, and operates on 16-frame clips cropped at 224x224 spatial resolution, can be done using the following command:
