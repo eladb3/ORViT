@@ -21,6 +21,7 @@ If you find ORViT useful in your research, please use the following BibTeX entry
 | --- | --- | --- | --- | --- | --- | --- |
 | ORViT-Motionformer | SSv2 | 16 | 224 | 67.9 | 90.8 | [model](https://drive.google.com/file/d/1hDyPwBnif0ud3hQY8615bIzyR5vH5uJk/view?usp=sharing) |
 | ORViT-Motionformer-HR | EK100 | 16 | 336 | 45.7 | 75.8 | [model](https://drive.google.com/file/d/13PSMc-iboyt2S_w-sRXAZduzknLmvZ8j/view?usp=sharing) |
+| ORViT-Motionformer | SmthElse | 16 | 224 | 70.1 | 92.0 | [model](https://drive.google.com/file/d/1Byk4uShBwNCSrbX18O_py-y9Joe5r88N/view?usp=sharing) |
 
 
 
